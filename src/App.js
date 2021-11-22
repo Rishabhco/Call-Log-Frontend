@@ -5,7 +5,8 @@ import Read from './components/Read';
 import Create from './components/Create';
 import Update from './components/Update';
 import Delete from './components/Delete';
-import { BrowserRouter as Router,Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router,Routes, Route} from 'react-router-dom';
+
 
 
 function App() {

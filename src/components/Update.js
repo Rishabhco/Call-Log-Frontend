@@ -1,7 +1,14 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 export default function Read() {
+
+    let navigate =useNavigate();
+
+    function navigation(){
+        navigate('/');
+    }
 
     const inputEName = React.createRef();
     const inputPName = React.createRef();
@@ -19,7 +26,7 @@ export default function Read() {
             axios.patch(`https://callog.herokuapp.com/update/${id}`,{
                 email:inputNewEmail.current.value
             }).then((response) => {
-                alert(response.data)
+                navigation();
             }).catch((err) => {
                 console.log(err)
             })
@@ -37,7 +44,7 @@ export default function Read() {
             axios.patch(`https://callog.herokuapp.com/update/${id}`,{
                 phone:inputNewPhone.current.value
             }).then((response) => {
-                alert(response.data)
+                navigation();
             }).catch((err) => {
                 console.log(err)
             })

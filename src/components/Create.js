@@ -1,7 +1,13 @@
 import axios from 'axios';
-import React from 'react'
+import React from 'react';
+import {useNavigate} from 'react-router-dom'
 
 export default function Create() {
+    let navigate =useNavigate();
+
+    function navigation(){
+        navigate('/');
+    }
 
     const inputName = React.createRef();
     const inputEmail = React.createRef();
@@ -14,8 +20,7 @@ export default function Create() {
             email: inputEmail.current.value,
             phone: inputPhone.current.value
         }).then((response) => {
-            // console.log(response);
-            alert(response.data)
+            navigation();
         }).catch((err) => {
             console.log(err)
         })
