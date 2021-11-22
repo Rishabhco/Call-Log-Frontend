@@ -9,9 +9,7 @@ export default function Read() {
     function navigation(){
         navigate('/');
     }
-
-    const inputEName = React.createRef();
-    const inputPName = React.createRef();
+    
     const inputEmail = React.createRef();
     const inputNewEmail = React.createRef();
     const inputPhone = React.createRef();
@@ -19,8 +17,8 @@ export default function Read() {
 
     const handleSubmitEmail = (event) => {
         event.preventDefault();
-        axios.post("https://callog.herokuapp.com/findByPhone",{
-            phone:inputPhone.current.value
+        axios.post("https://callog.herokuapp.com/findByEmail",{
+            email:inputEmail.current.value
         }).then((response)=>{
             const id=response.data[0]._id;
             axios.patch(`https://callog.herokuapp.com/update/${id}`,{
@@ -37,8 +35,8 @@ export default function Read() {
 
     const handleSubmitPhone = (event) => {
         event.preventDefault();
-        axios.post("https://callog.herokuapp.com/findByEmail",{
-            email:inputEmail.current.value
+        axios.post("https://callog.herokuapp.com/findByPhone",{
+            phone:inputPhone.current.value
         }).then((response)=>{
             const id=response.data[0]._id;
             axios.patch(`https://callog.herokuapp.com/update/${id}`,{
@@ -60,15 +58,15 @@ export default function Read() {
                 <form onSubmit={handleSubmitEmail}>
                     <div className="row mb-3">
                         <label htmlFor="name" className="form-label">Name</label>
-                        <input name="name" type="text" className="form-control" id="name" ref={inputEName} />
+                        <input name="name" type="text" className="form-control" id="name" />
+                    </div>
+                    <div className="row mb-3">
+                        <label htmlFor="mail" className="form-label">Current Email</label>
+                        <input name="email" type="email" className="form-control" id="mail" ref={inputEmail} />
                     </div>
                     <div className="row mb-3">
                         <label htmlFor="mail" className="form-label"> New Email</label>
                         <input name="email" type="email" className="form-control" id="mail" ref={inputNewEmail} />
-                    </div>
-                    <div className="row mb-3">
-                        <label htmlFor="phone" className="form-label">Phone Number</label>
-                        <input name="phone" type="number" className="form-control" id="phone" ref={inputPhone} />
                     </div>
                     <div className="col-auto my-4" align="center">
                         <button type="submit " className="btn btn-primary">Submit</button>
@@ -78,11 +76,12 @@ export default function Read() {
                 <form onSubmit={handleSubmitPhone}>
                     <div className="row mb-3">
                         <label htmlFor="name" className="form-label">Name</label>
-                        <input name="name" type="text" className="form-control" id="name" ref={inputPName} />
+                        <input name="name" type="text" className="form-control" id="name" />
                     </div>
+                   
                     <div className="row mb-3">
-                        <label htmlFor="mail" className="form-label">Email</label>
-                        <input name="email" type="email" className="form-control" id="mail" ref={inputEmail} />
+                        <label htmlFor="phone" className="form-label">Current Phone Number</label>
+                        <input name="phone" type="number" className="form-control" id="phone" ref={inputPhone} />
                     </div>
                     <div className="row mb-3">
                         <label htmlFor="phone" className="form-label">New Phone Number</label>
